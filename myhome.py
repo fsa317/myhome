@@ -130,8 +130,8 @@ def processWineData(topic,msg):
         if (val=="1"):
             val = "Defrosting"
         else:
-            val = "Off"
-    dprint("ha/wine/"+name+" "+val)    
+            val = "Normal"
+    dprint("ha/wine/"+name+" "+val)
     mqttc.publish("ha/wine/"+name,val)
 
         #dprint(wine_roomtemp_list)
