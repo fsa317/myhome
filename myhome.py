@@ -121,9 +121,19 @@ def processWineData(topic,msg):
     winedata[name] = val
     winedata_ts[name] = datetime.datetime.now()
     mqttc.publish("oh/wine/"+name,val)
+    if (name=="Cooling"):
+        if (val=="1"):
+            val = "Cooling"
+        else:
+            val = "Off"
+    if (name=="Defrosting"):
+        if (val=="1"):
+            val = "Defrosting"
+        else:
+            val = "Off"
+    dprint("ha/wine/"+name+" "+val)    
     mqttc.publish("ha/wine/"+name,val)
-    if (name == "Room Temp"):
-        insertRoomTemp(val)
+
         #dprint(wine_roomtemp_list)
 
 def processFireplace(topic,msg):
