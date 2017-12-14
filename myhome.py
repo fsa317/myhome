@@ -137,6 +137,7 @@ def processWineData(topic,msg):
         #dprint(wine_roomtemp_list)
 
 def processFireplace(topic,msg):
+    dprint("process fireplace called "+msg) 
     if (msg=="1"):
         turnOnFireplace()
     if (msg=="0"):

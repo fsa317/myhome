@@ -13,5 +13,15 @@
     "headers": {"x-ha-access": "Vegas0429"},
     "json": true,
     "body": {"entity_id": "switch.fireplace_switch"}
+  },
+  {
+    "name": "Auto Door Lock",
+    "address": "78:e1:03:20:51:0f",
+    "protocol": "udp",
+    "url": "https://frank.apsquared.co/api/services/script/disableautolock",
+    "method": "POST",
+    "headers": {"x-ha-access": "Vegas0429"},
+    "json": true,
+    "body": {}
   }
 ]}
