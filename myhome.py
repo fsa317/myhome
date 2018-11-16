@@ -131,8 +131,8 @@ def processWineData(topic,msg):
             val = "Defrosting"
         else:
             val = "Normal"
-    dprint("ha/wine/"+name+" "+val)
-    mqttc.publish("ha/wine/"+name,val)
+    dprint("SENDING ha/wine/"+name+" "+val)
+    mqttc.publish("ha/wine/"+name,val,retain=True)
 
         #dprint(wine_roomtemp_list)
 
@@ -151,10 +151,11 @@ def on_connect(client, obj, rc):
     client.subscribe("Vera/#")
     client.subscribe("regserver")
     client.subscribe("myhome/#")
+    client.subscribe("tempprobe/#")
     sys.stdout.flush()
 
 def on_message(client,userdata,msg):
-    print(msg.topic+" "+str(msg.payload))
+    print("RCVD: "+msg.topic+" "+str(msg.payload))
     if (msg.topic.startswith("Vera")):
         processVeraEvent(msg.topic, msg.payload)
     if (msg.topic.startswith("regserver")):
@@ -172,6 +173,8 @@ def on_message(client,userdata,msg):
     if (msg.topic.startswith("myhome/wine/setheaterpower")):
         dprint("DBG3: "+msg.payload)
         mqttc.publish("winebot/setheaterpower",msg.payload)
+    if (msg.topic.startswith("tempprobe")):
+        print("tempprobe="+msg.payload)
     sys.stdout.flush()
 
 def insertRoomTemp(val):
