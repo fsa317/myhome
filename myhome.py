@@ -10,6 +10,7 @@ import time
 import json
 import gmail
 import datetime
+import random
 
 # http://forum.micasaverde.com/index.php/topic,35848.75.html  VERA MQTT Plugin
 
@@ -131,6 +132,9 @@ def processWineData(topic,msg):
             val = "Defrosting"
         else:
             val = "Normal"
+    if (name=="Humidity"):
+	r = random.randint(1,55)
+	val = val+str(r)
     dprint("SENDING ha/wine/"+name+" "+val)
     mqttc.publish("ha/wine/"+name,val,retain=True)
 
