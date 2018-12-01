@@ -1,10 +1,5 @@
 {"buttons":[
   {
-    "name": "Debug Dash Button",
-    "address": "",
-    "debug": true
-  },
-  {
     "name": "Fireplace",
     "address": "78:e1:03:34:1d:23",
     "protocol": "udp",
@@ -13,6 +8,16 @@
     "headers": {"x-ha-access": "Vegas0429"},
     "json": true,
     "body": {"entity_id": "switch.fireplace_switch"}
+  },
+  {
+    "name": "Bedroom",
+    "address": "00:fc:8b:3a:e7:24",
+    "protocol": "udp",
+    "url": "https://frank.apsquared.co/api/services/switch/toggle",
+    "method": "POST",
+    "headers": {"x-ha-access": "Vegas0429"},
+    "json": true,
+    "body": {"entity_id": "switch.leviton_vrs151lz_binary_scene_switch_switch_3"}
   },
   {
     "name": "Auto Door Lock",

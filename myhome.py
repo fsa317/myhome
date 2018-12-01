@@ -134,7 +134,7 @@ def processWineData(topic,msg):
             val = "Normal"
     if (name=="Humidity"):
 	r = random.randint(1,55)
-	val = val+str(r)
+	val = val[:-2]+str(r)
     dprint("SENDING ha/wine/"+name+" "+val)
     mqttc.publish("ha/wine/"+name,val,retain=True)
 
