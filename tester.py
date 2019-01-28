@@ -27,11 +27,10 @@ def on_publish(mosq, obj, mid):
 #MQTT processing
 def on_connect(client, obj, rc):
     print("mqtt connect rc: " + str(rc))
-    client.subscribe("myhome/fireplace")
-    client.subscribe("myhome/#")
+    client.subscribe("hass/#")
 
 def on_message(client,userdata,msg):
-	print(msg.topic+" "+str(msg.payload))
+	print(msg.topic+" -- "+str(msg.payload))
 #MAIN
 
 print "Connecting to mqtt"
@@ -54,9 +53,6 @@ print "Starting test"
 #mqttc.publish("oh/wine/Defrosting","0")
 #mqttc.publish("oh/wine/Humidity","41")
 
-mqttc.publish("winebot/settemp","51")
-mqttc.publish("winebot/setfinmintemp","44")
-mqttc.publish("winebot/setheaterpower","100")
 
 
 

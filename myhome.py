@@ -27,7 +27,6 @@ lastunlocktime = 0
 lastmotion = 0
 fireplaceip = "192.168.1.8"
 wineip = "192.168.1.99"
-tickerip = "192.168.1.13"
 winedata = {}       #latest values of all things sent
 winedata_ts = {}    #timestamps for all values sent
 MAX_LIST_COUNT = 1000
@@ -110,7 +109,6 @@ def processRegServer(topic,msg):
         saveSystemIP("Wine",addr)
     if (name == "Ticker"):
         dprint("Ticker set to "+addr)
-        tickerip = addr
         saveSystemIP("Ticker",addr)
     sys.stdout.flush()
 
@@ -141,7 +139,7 @@ def processWineData(topic,msg):
         #dprint(wine_roomtemp_list)
 
 def processFireplace(topic,msg):
-    dprint("process fireplace called "+msg) 
+    dprint("process fireplace called "+msg)
     if (msg=="1"):
         turnOnFireplace()
     if (msg=="0"):
@@ -156,6 +154,7 @@ def on_connect(client, obj, rc):
     client.subscribe("regserver")
     client.subscribe("myhome/#")
     client.subscribe("tempprobe/#")
+    client.subscribe("sensors/#")   #ESP Sensors
     sys.stdout.flush()
 
 def on_message(client,userdata,msg):
@@ -252,28 +251,10 @@ def fireplaceOff():
     return turnOffFireplace()
 
 
-@app.route("/ticker/addmsg/<msg>")
-def setTickerMsg(msg):
-    print "Set Ticker Msg - "+msg
-    sendTickerMsg(msg)
-    return "OK"
-
-@app.route("/ticker/clearmsgs")
-def clearTickerMsg(msg):
-    print "Clear Ticker Msgs - "
-    clearTickerMessages()
-    return "OK"
-
 @app.route("/")
 def getHome():
     return send_from_directory('html', 'home.html')
 
-def sendTickerMsg(msg):
-    print "Publishing ticker msg "+msg
-    mqttc.publish("ticker/addmsg","          "+msg+"          ")
-
-def clearTickerMessages():
-    mqttc.publish("ticker/clearmsg","clearall")
 
 ### MAIN
 if __name__ == "__main__":
