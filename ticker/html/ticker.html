@@ -6,6 +6,10 @@
       .tickerbtn{
         margin:5px;
       }
+
+      .form-row{
+        margin:5px;
+      }
     </style>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -15,11 +19,48 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   </head>
   <body>
-    <h1>TICKER</h1>
-    <button class="btn-info tickerbtn" id="bluebtn">Blue</button>&nbsp;<button class="btn-info tickerbtn" id="bluebtn_long">Blue Long</button><br/><br/>
-    <button class="btn-danger tickerbtn" id="redbtn">Red</button>&nbsp;<button class="btn-danger tickerbtn" id="redbtn_long">Red Long</button><br/><br/>
-    <button class="btn-secondary tickerbtn" id="menubtn">Menu</button>&nbsp;<button class="btn-secondary tickerbtn" id="menubtn_long">Menu Long</button><br/><br/>
-
+    <div class="container">
+      <h1>Buttons</h1>
+      <div class="container">
+        <div class="row">
+          <div class="col-6 col-lg-2"><button class="btn btn-block btn-info btn-lg tickerbtn" id="bluebtn">Blue</button></div>
+          <div class="col-6 col-lg-2"><button class="btn btn-block btn-info btn-lg tickerbtn" id="bluebtn_long">Blue Long</button></div>
+          <div class="col-6 col-lg-2"><button class="btn btn-block btn-danger btn-lg tickerbtn" id="redbtn">Red</button></div>
+          <div class="col-6 col-lg-2"><button class="btn btn-block btn-danger btn-lg tickerbtn" id="redbtn_long">Red Long</button></div>
+          <div class="col-6 col-lg-2"><button class="btn btn-block btn-secondary btn-lg tickerbtn" id="menubtn">Menu</button></div>
+          <div class="col-6 col-lg-2"><button class="btn btn-block btn-secondary btn-lg tickerbtn" id="menubtn_long">Menu Long</button></div>
+        </div>
+      </div>
+      <br/><br/>
+      <h1>Message Sources</h1>
+      <div class="container">
+        <div class="row source-row">
+          <div class="col-12 form-check" id="source-template" style='font-size:110%'>
+            <input class="form-check-input source-checkbox" type="checkbox" aria-label="Checkbox for following text input">
+            <label class="form-check-label">Template Label</span>
+          </div>
+        </div>
+      </div>
+      <br/><br/>
+      <h1>Messages</h1>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-lg-7 form-row"><input id="m0" class="form-control"/></div>
+          <div class="col-12 col-lg-7 form-row"><input id="m1" class="form-control"/></div>
+          <div class="col-12 col-lg-7 form-row"><input id="m2" class="form-control"/></div>
+          <div class="col-12 col-lg-7 form-row"><input id="m3" class="form-control"/></div>
+          <div class="col-12 col-lg-7 form-row"><input id="m4" class="form-control"/></div>
+          <div class="col-12 col-lg-7 form-row"><input id="m5" class="form-control"/></div>
+          <div class="col-12 col-lg-7 form-row"><input id="m6" class="form-control"/></div>
+          <div class="col-12 col-lg-7 form-row"><input id="m7" class="form-control"/></div>
+          <div class="col-12 col-lg-7 form-row"><input id="m8" class="form-control"/></div>
+          <div class="col-12 col-lg-7 form-row"><input id="m9" class="form-control"/></div>
+        </div>
+        <div class="col-6 col-lg-3 form-row">
+          <button class="btn btn-block btn-danger" id="submitmsg">Submit</button>
+        </div>
+      </div>
+    </div>
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"  crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
@@ -40,6 +81,98 @@
             //alert( "complete" );
           });
       });
+
+    $("#submitmsg").click(function(){
+    //  alert('here');
+      var i = 0;
+      for (i = 0; i < 10; i++){
+        var m = $("#m"+i).val();
+        if (m){
+          $.ajax( "/api/setmsg/"+i+"/"+m)
+            .done(function(data) {
+
+            })
+            .fail(function() {
+              alert( "error submitmsg" );
+            });
+        }
+      }
+    });
+
+    $('.source-row').on('click',$('.source-checkbox'),handleSourceClick);
+
+    $(document).ready(function(e){
+
+      var jqxhr = $.ajax( "/api/getsources" )
+        .done(function(data) {
+          //alert( "success " +JSON.stringify(data));
+          console.log("success "+JSON.stringify(data));
+          updateSourceList(data);
+        })
+        .fail(function() {
+          alert( "error" );
+        })
+        .always(function() {
+          //alert( "complete" );
+        });
+      $.ajax( "/api/getcustommessages" )
+        .done(function(data) {
+          //alert( "success " +JSON.stringify(data));
+          console.log("success "+JSON.stringify(data));
+          setMessages(data);
+        })
+        .fail(function() {
+          alert( "error" );
+        })
+        .always(function() {
+          //alert( "complete" );
+        });
+    });
+
+    function setMessages(data){
+      var msgs = data.messages;
+      var i = 0;
+      jQuery.each(msgs, function() {
+        $("#m"+i).val(this);
+        i++;
+      });
+    }
+
+    function handleSourceClick(evt){
+      alert(evt.target.id);
+      source = evt.target.id.split('-')[1];
+      val = 'no'
+      if (evt.target.checked == true){
+        val = 'yes'
+      }
+      var jqxhr = $.ajax( "/api/setsource/"+source+"/"+val )
+        .done(function(data) {
+          console.log("success ");
+        })
+        .fail(function() {
+          alert( "error" );
+        })
+        .always(function() {
+          //alert( "complete" );
+        });
+    }
+
+    function updateSourceList(resp){
+      jQuery.each(resp.sourcelist, function() {
+        console.log(JSON.stringify(this));
+        name = this.name ;
+        value = this.value;
+        temp = $( "#source-template" ).clone();
+        temp.attr("id","div-"+name)
+        temp.find("label").html(name);
+        temp.find("input").attr("id","source-"+name);
+        if (value=="yes"){
+          temp.find("input").prop('checked',true);
+        }
+        temp.appendTo( ".source-row" );
+      });
+      $( "#source-template" ).remove();
+    }
     </script>
 
   </body>

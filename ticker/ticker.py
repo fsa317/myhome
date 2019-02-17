@@ -1,6 +1,6 @@
 from __future__ import division
 from flask import Flask, request, send_from_directory
-from pymongo import MongoClient
+from flask import jsonify
 import configparser
 import sys
 import math
@@ -10,12 +10,13 @@ import time
 import json
 import datetime
 import random
+import feeds
 
 #https://www.tutorialspoint.com/python/python_reading_rss_feed.htm
 #https://pypi.org/project/sports.py/
 
 #http://mlb.mlb.com/partnerxml/gen/news/rss/nym.xml
-
+#http://www.scorespro.com/rss2/live-baseball.xml
 
 app = Flask(__name__,static_url_path='')
 app.debug = False
@@ -26,13 +27,36 @@ currentSource = None
 
 tickerip = "192.168.1.13"
 
+@app.route("/api/getcustommessages")
+def doGetCustomMessages():
+    msgs = getCustomMessages()
+    return jsonify(messages=msgs)
+
+@app.route("/api/getsources")
+def doGetSources():
+    sources = config['sources']
+    sourceList = []
+    for key in sources:
+        sourceDict = {}
+        sourceDict['name'] = key
+        sourceDict['value'] = sources[key]
+        sourceList.append(sourceDict)
+    return jsonify(sourcelist=sourceList)
+
+@app.route("/api/setsource/<source>/<val>")
+def doSetSource(source,val):
+    config['sources'][source]=val
+    saveConfig()
+    return "OK"
+
 @app.route("/ticker/getnextsource")
 def doGetNextSource():
     processTickerEvent("fromticker/getnextsource","msg")
     return "OK"
 
-@app.route("/ticker/setmsg/<idx>/<msg>")
+@app.route("/api/setmsg/<idx>/<msg>")
 def setTickerMsg(idx,msg):
+    sendTickerMsg(idx,msg)
     config['custom']['m'+str(idx)]=msg
     saveConfig()
     return "OK"
@@ -66,10 +90,28 @@ def sendMessagesFromSource():
     if (currentSource == "custom"):
         dprint("Handling Custom messages")
         msgs = getCustomMessages()
+    elif (currentSource == "mets_news"):
+        dprint("mets_news")
+        msgs = feeds.getMetsNews()
+    elif (currentSource == "news"):
+        msgs = feeds.getNews()
     else:
         print("Unknown source")
     if (msgs is not None):
         sendAllMsgs(msgs)
+
+def getNextSource():
+    sources = config['sources']
+    foundCurrent = False
+    for key in sources:
+        if (foundCurrent and sources[key] == "yes"):
+            return key
+        if (key == currentSource):
+            foundCurrent = True
+    #if we got here we can just return the first on source
+    for key in sources:
+        if (sources[key] == "yes"):
+            return key
 
 def sendAllMsgs(msgs):
     idx = 0
@@ -120,18 +162,6 @@ def saveConfig():
     with open('ticker.ini', 'w') as configfile:
         config.write(configfile)
 
-def getNextSource():
-    sources = config['sources']
-    foundCurrent = False
-    for key in sources:
-        if (foundCurrent and sources[key] == "yes"):
-            return key
-        if (key == currentSource):
-            foundCurrent = True
-    #if we got here we can just return the first on source
-    for key in sources:
-        if (sources[key] == "yes"):
-            return key
 
 def dprint(str):
     if (DEBUG == True):
