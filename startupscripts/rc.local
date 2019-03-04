@@ -18,5 +18,6 @@ if [ "$_IP" ]; then
 fi
 
 /home/pi/myhome/startmyhome.sh &
+/home/pi/myhome/ticker/startticker.sh &
 ##/home/pi/fauxmo/startfauxmo.sh &
 exit 0

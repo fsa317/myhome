@@ -2,6 +2,7 @@ import feedparser
 import sys
 
 #https://www.nba.com/knicks/rss.xml
+#https://www.alphavantage.co/ through HA?  
 
 def getMetsNews():
     return getFeed('http://mlb.mlb.com/partnerxml/gen/news/rss/nym.xml')

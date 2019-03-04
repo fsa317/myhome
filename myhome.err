@@ -1,1 +1,11 @@
  * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+127.0.0.1 - - [03/Mar/2019 11:56:23] "GET /ticker/addmsg/Detroit%20Tigers%20vs%20Atlanta%20Braves:%207-4%20Match%20Finished HTTP/1.1" 404 -
+127.0.0.1 - - [03/Mar/2019 11:56:23] "GET /ticker/addmsg/Washington%20Nationals%20vs%20Minnesota%20Twins:%2010-6%20Match%20Finished HTTP/1.1" 404 -
+127.0.0.1 - - [03/Mar/2019 11:56:23] "GET /ticker/addmsg/New%20York%20Mets%20vs%20Houston%20Astros:%207-8%20Match%20Finished HTTP/1.1" 404 -
+127.0.0.1 - - [03/Mar/2019 11:56:24] "GET /ticker/addmsg/Tampa%20Bay%20Rays%20vs%20Philadelphia%20Phillies:%203-11%20Match%20Finished HTTP/1.1" 404 -
+127.0.0.1 - - [03/Mar/2019 11:56:24] "GET /ticker/addmsg/Boston%20Red%20Sox%20vs%20Baltimore%20Orioles:%201-9%20Match%20Finished HTTP/1.1" 404 -
+127.0.0.1 - - [03/Mar/2019 11:56:24] "GET /ticker/addmsg/Pittsburgh%20Pirates%20vs%20New%20York%20Yankees:%208-7%20Match%20Finished HTTP/1.1" 404 -
+127.0.0.1 - - [03/Mar/2019 11:56:24] "GET /ticker/addmsg/Arizona%20Diamondbacks%20vs%20Los%20Angeles%20Dodgers:%206-5%20Match%20Finished HTTP/1.1" 404 -
+127.0.0.1 - - [03/Mar/2019 11:56:24] "GET /ticker/addmsg/Chicago%20White%20Sox%20vs%20Colorado%20Rockies:%2010-6%20Match%20Finished HTTP/1.1" 404 -
+127.0.0.1 - - [03/Mar/2019 11:56:24] "GET /ticker/addmsg/San%20Diego%20Padres%20vs%20San%20Francisco%20Giants:%207-6%20Match%20Finished HTTP/1.1" 404 -
+127.0.0.1 - - [03/Mar/2019 11:56:24] "GET /ticker/addmsg/Chicago%20Cubs%20vs%20Milwaukee%20Brewers:%204-7%20Match%20Finished HTTP/1.1" 404 -
