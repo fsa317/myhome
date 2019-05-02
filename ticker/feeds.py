@@ -2,13 +2,22 @@ import feedparser
 import sys
 
 #https://www.nba.com/knicks/rss.xml
-#https://www.alphavantage.co/ through HA?  
+#https://www.alphavantage.co/ through HA?
 
 def getMetsNews():
-    return getFeed('http://mlb.mlb.com/partnerxml/gen/news/rss/nym.xml')
+    return getFeed('https://www.mlb.com/mets/feeds/news/rss.xml')
 
 def getNews():
     return getFeed('http://feeds.reuters.com/Reuters/domesticNews')
+
+
+def getScores(l):
+    fname = "scores/"+l + ".dat"
+    with open(fname) as f:
+        content = f.readlines()
+    # you may also want to remove whitespace characters like `\n` at the end of each line
+    content = [x.strip() for x in content]
+    return content
 
 def getFeed(url):
     msgs = []
@@ -19,6 +28,6 @@ def getFeed(url):
         #rint title
         msgs.append(title)
         i = i + 1
-        if (i >= 10):
+        if (i >= 5):
             break
     return msgs

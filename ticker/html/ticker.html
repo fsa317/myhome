@@ -41,6 +41,9 @@
           </div>
         </div>
       </div>
+      <div class="col-6 col-lg-3 form-row">
+        <button id="getnextsource" class="btn btn-block btn-danger">Get Next Source</button>
+      </div>
       <br/><br/>
       <h1>Messages</h1>
       <div class="container">
@@ -99,6 +102,16 @@
       }
     });
 
+    $("#getnextsource").click(function(){
+      $.ajax( "/ticker/getnextsource")
+        .done(function(data) {
+          alert("Get Next Source called");
+        })
+        .fail(function() {
+          alert( "error submitmsg" );
+        });
+    });
+
     $('.source-row').on('click',$('.source-checkbox'),handleSourceClick);
 
     $(document).ready(function(e){
@@ -139,7 +152,7 @@
     }
 
     function handleSourceClick(evt){
-      alert(evt.target.id);
+      //alert(evt.target.id);
       source = evt.target.id.split('-')[1];
       val = 'no'
       if (evt.target.checked == true){

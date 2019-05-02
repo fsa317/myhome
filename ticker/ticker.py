@@ -95,6 +95,14 @@ def sendMessagesFromSource():
         msgs = feeds.getMetsNews()
     elif (currentSource == "news"):
         msgs = feeds.getNews()
+    elif (currentSource == "mlb_scores"):
+        msgs = feeds.getScores("MLB")
+    elif (currentSource == "nfl_scores"):
+        msgs = feeds.getScores("NFL")
+    elif (currentSource == "nba_scores"):
+        msgs = feeds.getScores("NBA")
+    elif (currentSource == "nhl_scores"):
+        msgs = feeds.getScores("NHL")    
     else:
         print("Unknown source")
     if (msgs is not None):
