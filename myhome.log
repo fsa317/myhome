@@ -2719,3 +2719,13 @@ RCVD: wine/data Defrosting=0
 SENDING ha/wine/Defrosting Normal
 RCVD: wine/data Humidity=52.20
 SENDING ha/wine/Humidity 52.4
+RCVD: wine/data Room Temp=63.64
+SENDING ha/wine/Room Temp 63.64
+RCVD: wine/data Fin Temp=61.72
+SENDING ha/wine/Fin Temp 61.72
+RCVD: wine/data Cooling=0
+SENDING ha/wine/Cooling Off
+RCVD: wine/data Defrosting=0
+SENDING ha/wine/Defrosting Normal
+RCVD: wine/data Humidity=52.20
+SENDING ha/wine/Humidity 52.47
