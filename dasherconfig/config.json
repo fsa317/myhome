@@ -3,9 +3,10 @@
     "name": "Amazon Basics",
     "address": "78:e1:03:34:1d:23",
     "protocol": "udp",
-    "url": "https://frank.apsquared.co/api/services/switch/toggle",
+    "url": "https://fulton.duckdns.org/api/services/switch/toggle",
     "method": "POST",
-    "headers": {"x-ha-access": "Vegas0429"},
+    "headers": {"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIzYmYwYzhlOTM0OGM0Mzg1ODgwYmMxNGI2ZTM5OTYwNiIsImlhdCI6MTU3NDczNDgyOCwiZXhwIjoxODkwMDk0ODI4fQ.pNSPvoEHD58gsx9VfFSTH0Hy4BY3cDKcpqNuRx-41po",
+                "content-type": "application/json"},
     "json": true,
     "body": {"entity_id": "switch.fireplace_switch"}
   },
@@ -13,19 +14,22 @@
     "name": "Goldfish",
     "address": "00:fc:8b:3a:e7:24",
     "protocol": "udp",
-    "url": "https://frank.apsquared.co/api/services/switch/toggle",
+    "url": "https://fulton.duckdns.org/api/services/switch/toggle",
     "method": "POST",
-    "headers": {"x-ha-access": "Vegas0429"},
+    "headers": {"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIzYmYwYzhlOTM0OGM0Mzg1ODgwYmMxNGI2ZTM5OTYwNiIsImlhdCI6MTU3NDczNDgyOCwiZXhwIjoxODkwMDk0ODI4fQ.pNSPvoEHD58gsx9VfFSTH0Hy4BY3cDKcpqNuRx-41po",
+                "content-type": "application/json"},
     "json": true,
-    "body": {"entity_id": "switch.leviton_vrs151lz_binary_scene_switch_switch_3"}
+    "body": {"entity_id": "switch.leviton_vrs15_1lz_binary_scene_switch_switch_3"}
   },
   {
     "name": "Amazon Elements",
     "address": "78:e1:03:20:51:0f",
     "protocol": "udp",
-    "url": "https://frank.apsquared.co/api/services/script/disableautolock",
+    "url": "https://fulton.duckdns.org/api/services/script/disableautolock",
     "method": "POST",
-    "headers": {"x-ha-access": "Vegas0429"},
+    "headers": {"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIzYmYwYzhlOTM0OGM0Mzg1ODgwYmMxNGI2ZTM5OTYwNiIsImlhdCI6MTU3NDczNDgyOCwiZXhwIjoxODkwMDk0ODI4fQ.pNSPvoEHD58gsx9VfFSTH0Hy4BY3cDKcpqNuRx-41po",
+                "content-type": "application/json"},
+ 
     "json": true,
     "body": {}
   },
@@ -33,10 +37,11 @@
     "name": "Gatorade Button",
     "address": "fc:a6:67:ef:e6:ee",
     "protocol": "udp",
-    "url": "https://frank.apsquared.co/api/services/switch/toggle",
+    "url": "https://fulton.duckdns.org/api/services/switch/toggle",
     "method": "POST",
-    "headers": {"x-ha-access": "Vegas0429"},
+       "headers": {"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIzYmYwYzhlOTM0OGM0Mzg1ODgwYmMxNGI2ZTM5OTYwNiIsImlhdCI6MTU3NDczNDgyOCwiZXhwIjoxODkwMDk0ODI4fQ.pNSPvoEHD58gsx9VfFSTH0Hy4BY3cDKcpqNuRx-41po",
+                "content-type": "application/json"},
     "json": true,
-    "body": {"entity_id": "switch.leviton_vrs151lz_binary_scene_switch_switch_3"}
+    "body": {"entity_id": "switch.ticker"}
   }
 ]}

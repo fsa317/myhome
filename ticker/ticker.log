@@ -2,3 +2,31 @@
 Connecting to mqtt
 TICKER IP 192.168.1.36
 mqtt connect rc: 0
+RCVD: regserver Wine:192.168.1.43
+RCVD: regserver Wine:192.168.1.43
+RCVD: regserver Wine:192.168.1.43
+RCVD: regserver Wine:192.168.1.43
+RCVD: regserver Wine:192.168.1.43
+RCVD: regserver Wine:192.168.1.43
+RCVD: regserver Wine:192.168.1.43
+RCVD: regserver Wine:192.168.1.43
+RCVD: regserver Wine:192.168.1.43
+RCVD: regserver Ticker:192.168.1.39
+Ticker.ip set to 192.168.1.39
+RCVD: fromticker/getnextsource getnextsource
+Ticker Event fromticker/getnextsource getnextsource
+getting source: custom
+currentSource custom
+Handling Custom messages
+Publishing ticker msg 0: SAL IS A GOD
+Publishing ticker msg 1: HAPPY BIRTHDAY VINCENT
+Publishing ticker msg 2: LET'S GO METS
+Publishing ticker msg 3: HAPPY BIRTHDAY VINCENT
+Publishing ticker msg 4: 
+Publishing ticker msg 5: 
+Publishing ticker msg 6: 
+Publishing ticker msg 7: 
+Publishing ticker msg 8: 
+Publishing ticker msg 9: 
+RCVD: fromticker/getnextsource getnextsource
+Ticker Event fromticker/getnextsource getnextsource
